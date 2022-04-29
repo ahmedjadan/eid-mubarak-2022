@@ -3,14 +3,19 @@ import { toPng } from 'html-to-image';
 import ImageBLured from './Image';
 import Input from './Input';
 import { useRouter } from 'next/router';
-
+import download from 'downloadjs';
+import * as htmlToImage from 'html-to-image';
+import { encode } from 'js-base64';
 
 export default function Modale({ setOpen, data }) {
-  const [name, setName] = useState('عيدكم مبارك...');
+  const baseurl = 'https://eid-card.vercel.app';
+  const url = baseurl;
+
+  const [name, setName] = useState('');
   const ref = useRef(null);
   const router = useRouter();
 
-  const onButtonClick = useCallback(() => {
+  const downloadImage = useCallback(() => {
     if (ref.current === null) {
       return;
     }
@@ -28,6 +33,14 @@ export default function Modale({ setOpen, data }) {
       });
   }, [ref, router]);
 
+  const getUrl = () => {
+    let string = JSON.stringify(data.src);
+    let code = encode(string);
+    console.log(code);
+    const urls = `${url}/card?id=${code}`;
+    navigator.clipboard.writeText(urls);
+    
+  };
   return (
     <>
       <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -35,14 +48,34 @@ export default function Modale({ setOpen, data }) {
           className="fixed inset-0 w-full h-full bg-gray-800/90"
           onClick={() => setOpen(false)}
         ></div>
-        <div className="flex items-center min-h-screen">
+        <div className="flex items-center min-h-screen p-2">
           <div className="relative w-full max-w-3xl mx-auto p-2  bg-white  rounded-md shadow-lg  overflow-hidden">
             <div className="grid md:grid-cols-2 grid-cols-1  bg-gray-100/90">
-              <div className="md:col-span-1">
-                <div className="flex flex-col items-center justify-center h-full space-y-4 px-4">
+              <div className="md:col-span-1 relative mb-10">
+                <button
+                  onClick={() => setOpen(false)}
+                  className=" absolute top-0 left-2 flex items-center text-center font-messiri px-4 py-2 rounded text-gray-800"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <div className="flex relative flex-col items-center justify-center h-full space-y-4 px-4 mt-10">
+                  <div className="md:hidden bg-indigo-500/70 text-gray-200 p-1 rounded ">
+                    لتجربة ممتازة استخدم المتصفح على جهاز الكمبيوتر
+                  </div>
                   <Input name={name} setName={setName} />
                   <button
-                    onClick={onButtonClick}
+                    onClick={() => downloadImage()}
                     className="w-full flex items-center text-center justify-between bg-rose-700 hover:bg-rose-600 duration-100 font-messiri px-4 py-2 rounded text-white"
                   >
                     حمّل الصورة
@@ -64,7 +97,7 @@ export default function Modale({ setOpen, data }) {
                 </div>
               </div>
               <div
-                className="relative md:col-span-1 rounded-md shadow-2xl p-2 "
+                className="relative md:col-span-1 rounded-md shadow-2xl p-2  md:mt-0 "
                 id="eid-card"
                 ref={ref}
               >
@@ -78,7 +111,7 @@ export default function Modale({ setOpen, data }) {
                 />
                 <div
                   className={`absolute ${
-                    data.active === true ? 'bottom-[6.5rem] ' : 'bottom-10 '
+                    data.active === true ? 'bottom-[6rem] ' : 'bottom-10 '
                   } flex items-center justify-center w-1/2 left-0`}
                 >
                   {name && (
