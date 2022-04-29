@@ -3,13 +3,9 @@ import { toPng } from 'html-to-image';
 import ImageBLured from './Image';
 import Input from './Input';
 import { useRouter } from 'next/router';
-import download from 'downloadjs';
-import * as htmlToImage from 'html-to-image';
-import { encode } from 'js-base64';
 
 export default function Modale({ setOpen, data }) {
-  const baseurl = 'https://eid-card.vercel.app';
-  const url = baseurl;
+
 
   const [name, setName] = useState('');
   const ref = useRef(null);
@@ -33,14 +29,6 @@ export default function Modale({ setOpen, data }) {
       });
   }, [ref, router]);
 
-  const getUrl = () => {
-    let string = JSON.stringify(data.src);
-    let code = encode(string);
-    console.log(code);
-    const urls = `${url}/card?id=${code}`;
-    navigator.clipboard.writeText(urls);
-    
-  };
   return (
     <>
       <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -49,12 +37,12 @@ export default function Modale({ setOpen, data }) {
           onClick={() => setOpen(false)}
         ></div>
         <div className="flex items-center min-h-screen p-2">
-          <div className="relative w-full max-w-3xl mx-auto p-2  bg-white  rounded-md shadow-lg  overflow-hidden">
+          <div className="relative w-full max-w-3xl mx-auto   bg-white  rounded-md shadow-lg  overflow-hidden">
             <div className="grid md:grid-cols-2 grid-cols-1  bg-gray-100/90">
               <div className="md:col-span-1 relative mb-10">
                 <button
                   onClick={() => setOpen(false)}
-                  className=" absolute top-0 left-2 flex items-center text-center font-messiri px-4 py-2 rounded text-gray-800"
+                  className=" absolute top-0 left-0 flex items-center text-center font-messiri px-4 py-2 rounded text-gray-800"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +99,7 @@ export default function Modale({ setOpen, data }) {
                 />
                 <div
                   className={`absolute ${
-                    data.active === true ? 'bottom-[6rem] ' : 'bottom-10 '
+                    data.active === true ? 'bottom-[6.4rem] ' : 'bottom-10 '
                   } flex items-center justify-center w-1/2 left-0`}
                 >
                   {name && (
