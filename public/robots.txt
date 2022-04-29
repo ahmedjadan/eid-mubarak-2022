@@ -1,0 +1,4 @@
+User-agent: *
+# Host
+Host: https://eid-card.vercel.app
+Sitemap: https://eid-card.vercel.app/sitemap.xml

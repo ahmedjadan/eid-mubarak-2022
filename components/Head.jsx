@@ -15,8 +15,8 @@ const Head = ({ children, title, description, keywords, url, link, date, image }
       <meta key="title" name="title" content={title} />
      
       {/* <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> */}
-      <link rel="canonical" href={`https://alnwkhbah.com${router.asPath}`} />
-      <link rel="canonical" href="https://alnwkhbah.com" />
+      <link rel="canonical" href={`https://eid-card.vercel.app${router.asPath}`} />
+      <link rel="canonical" href="https://eid-card.vercel.app" />
 
       {/* <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" /> */}
@@ -28,8 +28,8 @@ const Head = ({ children, title, description, keywords, url, link, date, image }
       <meta key="og:description" property="og:description" content={description} />
       <meta key="og:type" property="og:type" content="website" />
       {/* facebook */}
-      <meta property="og:url" content={`https://alnwkhbah.com${router.asPath}`} />
-      <link rel="canonical" href={`https://alnwkhbah.com${router.asPath}`} />
+      <meta property="og:url" content={`https://eid-card.vercel.app${router.asPath}`} />
+      <link rel="canonical" href={`https://eid-card.vercel.app${router.asPath}`} />
       <meta key="og:image" property="og:image" content={image} />
       <meta key="image" property="image" content={image} />
       <meta key="og:image:width" property="og:image:width" content="1200" />

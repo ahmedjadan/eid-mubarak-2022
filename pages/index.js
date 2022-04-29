@@ -6,9 +6,10 @@ export default function Home() {
   return (
     <Layout>
       <Head
-        title="معايدة| بطاقة تهنئة| عيد الفطر المبارك 2022"
+        title="معايدة| بطاقة تهنئة| عيد الفطر المبارك 2022 🎉"
         description="أنشئ بطاقة معايدة بمناسبة عيد الفطر المبارك في عشر ثوان"
         keywords="بطاقات العيد، معايدات، كروت معايدة، تهنئة العيد"
+        image="https://eid-card.vercel.app/meta.png"
       />
       <div className=" max-w-5xl mx-auto my-16">
         <div className="max-w-3xl text-right md:mt-16 mb-8 my-8 px-4 lg:px-0 font-messiri ">
