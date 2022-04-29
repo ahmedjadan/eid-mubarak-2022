@@ -1,5 +1,10 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <sitemap>
+<url>
 <loc>https://eid-card.vercel.app</loc>
+<changefreq>daily</changefreq>
+<priority>0.7</priority>
+<lastmod>2022-04-29T19:52:00.018Z</lastmod>
+</url>
 </sitemap>
 </sitemapindex>
